@@ -1,0 +1,41 @@
+
+
+0fbc906a697a447fa0f5dfa934dfda26
+admin
+
+C:\Users\othnvun\.jenkins\secrets\initialAdminPassword
+
+
+
+
+
+maven integration 
+html publisher
+cucumber reports 
+
+For seeing the HTML output reports 
+
+java -Dhudson.model.DirectoryBrowserSupport.CSP="" -jar jenkins.war
+
+
+mvn clean test -Dcucumber.options="--tag @regression,@smoke"
+
+configure 
+provide the pom file 
+give the maven targets
+
+post build actions
+add the reports like 
+1. Extent Report--provide the folder name and pick the file *.html
+2. Pretty report--provide the folder name and pick the file *.html
+3. cucumeber report --- provide the folder name and pick the file *.json file 
+
+
+=====================
+http://grasshopper.tech/1697/
+cucumber extent reporting 4 or 5
+
+http://grasshopper.tech/824/
+check these articles
+
+

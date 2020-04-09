@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Suite" duration-ms="36799" started-at="2020-03-23T18:39:20Z" finished-at="2020-03-23T18:39:57Z">
+    <groups>
+      <group name="cucumber">
+        <method signature="AbstractTestNGCucumberTests.runScenario(io.cucumber.testng.PickleWrapper, io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.gap.automation.RunCuke_testngTest@5f30cab7]" name="runScenario" class="io.cucumber.testng.AbstractTestNGCucumberTests"/>
+      </group> <!-- cucumber -->
+    </groups>
+    <test name="Test" duration-ms="36799" started-at="2020-03-23T18:39:20Z" finished-at="2020-03-23T18:39:57Z">
+      <class name="com.gap.automation.RunCuke_testngTest">
+        <test-method status="PASS" signature="setUpClass()[pri:0, instance:com.gap.automation.RunCuke_testngTest@5f30cab7]" name="setUpClass" is-config="true" duration-ms="1006" started-at="2020-03-23T15:39:20Z" finished-at="2020-03-23T15:39:21Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUpClass -->
+        <test-method status="PASS" signature="runScenario(io.cucumber.testng.PickleWrapper, io.cucumber.testng.FeatureWrapper)[pri:0, instance:com.gap.automation.RunCuke_testngTest@5f30cab7]" name="runScenario" duration-ms="29182" started-at="2020-03-23T15:39:22Z" description="Runs Cucumber Scenarios" data-provider="scenarios" finished-at="2020-03-23T15:39:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA["Title of your scenario outline"]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA["Perform the basic GAP operations"]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- runScenario -->
+        <test-method status="PASS" signature="tearDownClass()[pri:0, instance:com.gap.automation.RunCuke_testngTest@5f30cab7]" name="tearDownClass" is-config="true" duration-ms="5789" started-at="2020-03-23T15:39:51Z" finished-at="2020-03-23T15:39:57Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDownClass -->
+      </class> <!-- com.gap.automation.RunCuke_testngTest -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>

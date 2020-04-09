@@ -1,0 +1,72 @@
+http://grasshopper.tech/1697/
+
+
+Introduction
+This article deals with generating Extent reports for Cucumber-JVM version 5 using the ExtentReports Cucumber Adapter Plugin. The article details out the procedure to create Logger and HTML reports available in the Community Extent Report edition.
+
+The adapter plugin is NOT an official artifact. This is based on the existing adapter for version 4 but has been modified to work with version 5. Due to this, the adapter jar is not available in a remote repository but needs to be downloaded and installed in local repository.
+
+The various steps required for this are to install the plugin, add the adapter dependency to the POM, configure plugin in the runner, enable report generation and modify report settings.
+
+Source
+The source code for the article is located here. The source code for extentreports-cucumber5-adapter plugin is located here.
+
+Plugin Installation
+The extentreports-cucumber5-adapter.jar version 1.0.0 can be downloaded from this location and added to the local repository using the install plugin. For more details of adding a 3rd party jar to local repository, refer to this. Use the below command to install the jar.
+
+mvn install:install-file -Dfile=<path-to-file> -DgroupId=com.aventstack 
+    -DartifactId=extentreports-cucumber5-adapter -Dversion=1.0.0 -Dpackaging=jar
+POM Dependencies
+The extentreports-cucumber5-adapter version 1.0.0 dependency needs to be added to the POM. Also the extentreports version 4.0.9 dependency needs to be added.
+
+<dependency>
+	<groupId>com.aventstack</groupId>
+	<artifactId>extentreports-cucumber5-adapter</artifactId>
+	<version>1.0.0</version>
+	<scope>test</scope>
+</dependency>
+<dependency>
+	<groupId>com.aventstack</groupId>
+	<artifactId>extentreports</artifactId>
+	<version>4.0.9</version>
+	<scope>test</scope>
+</dependency>
+The POM for this configuration is located here.
+
+Plugin Configuration
+The extentreports-cucumber5-adapter plugin needs to be added to the CucumberOptions annotation of the runner.
+
+@CucumberOptions(plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
+Add the colon ‘:’ at the end of the plugin argument, else below exception is thrown.
+
+cucumber.runtime.CucumberException: You must supply an output argument to com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter.
+Report Activation
+First method of activating the report generation is to place extent.properties file in the src/test/resources folder or in the src/test/resources/com/avenstack/adapter folder to be picked up by the adapter. This is ideal for setting up large number of properties. The complete settings for logger and html can be found here. Below examples show the case of the html report.
+
+extent.reporter.html.start=true
+extent.reporter.html.out=test-output/HtmlReport/ExtentHtml.html
+Second way is to add the required key and value pairs to the System properties. There are again two ways of achieving it.
+
+One way is to add the properties to the configuration section of the Maven Surefire or Failsafe plugin. This is also ideal for setting up large number of properties
+
+<configuration>
+    <systemPropertyVariables>
+        <extent.reporter.html.start>true</extent.reporter.html.start>
+        <extent.reporter.html.out>test-output/HtmlReport/ExtentHtml.html</extent.reporter.html.out>
+    </systemPropertyVariables>
+</configuration>
+Other way is to pass the property key-values in the Maven command. This is useful for small number of properties.
+
+mvn clean install -DargLine="-Dextent.reporter.html.start=true -Dextent.reporter.html.out=test-output/HtmlReport/ExtentHtml.html"
+Report Settings
+The configurations like report activation and location can be mentioned in the extent.properties or using maven settings as shown in the section above. To change settings like theme, title, encoding etc, a separate xml file eg. extent-config.xml is required. The location for this file eg. html report needs to be mentioned as value for the key extent.reporter.html.config.
+
+extent.reporter.html.config=src/test/resources/extent-config.xml
+This xml location key-value pair can also be set using Maven plugin configuration or command line as in the section above. The complete settings for logger and html can be found here.
+
+All that is left to execute the POM and check the reports.
+
+Parallel And\Or Multiple Runner Execution
+There is no additional configuration settings required for parallel execution with a single or multiple runners. This is also true for single threaded multiple runner execution.
+
+For parallel execution using JUnit refer here and for TestNG refer here.
